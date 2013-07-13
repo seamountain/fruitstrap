@@ -439,6 +439,9 @@ void handle_device(AMDeviceRef device) {
     if (result != 0)
     {
        printf("AMDeviceInstallApplication failed: %d\n", result);
+       if (result == -402620388) {
+        printf("Please check code signing or something else your app.");
+       }
         exit(1);
     }
 
