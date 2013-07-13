@@ -388,7 +388,7 @@ void handle_device(AMDeviceRef device) {
     CFStringRef found_device_id = AMDeviceCopyDeviceIdentifier(device);
 
     if (device_id != NULL) {
-        if(strcmp(device_id, CFStringGetCStringPtr(found_device_id, CFStringGetSystemEncoding())) == 0) {
+        if(strcmp(device_id, CFStringGetCStringPtr(found_device_id, kCFStringEncodingMacRoman)) == 0) {
             found_device = true;
         } else {
             return;
@@ -399,7 +399,7 @@ void handle_device(AMDeviceRef device) {
 
     CFRetain(device); // don't know if this is necessary?
 
-    printf("[  0%%] Found device (%s), beginning install\n", CFStringGetCStringPtr(found_device_id, CFStringGetSystemEncoding()));
+    printf("[  0%%] Found device (%s), beginning install\n", CFStringGetCStringPtr(found_device_id, kCFStringEncodingMacRoman));
 
     AMDeviceConnect(device);
     assert(AMDeviceIsPaired(device));
